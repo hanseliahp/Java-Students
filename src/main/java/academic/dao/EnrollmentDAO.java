@@ -59,7 +59,7 @@ public class EnrollmentDAO {
                     grade = "-";
                 }
 
-                System.out.println("--------------------------");
+                System.out.println("------------------------------------------------------");
                 System.out.println(
                     "Enrollment ID : " + rs.getInt("enrollment_id")
                 );

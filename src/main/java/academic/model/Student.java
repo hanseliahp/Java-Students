@@ -14,8 +14,7 @@ public class Student {
     private String studentNumber;
     private String studentName;
     
-    public Student(int studentId, String studentNumber, String studentName){
-        this.studentId = studentId;
+    public Student(String studentNumber, String studentName){
         this.studentNumber = studentNumber; 
         this.studentName = studentName;
     }

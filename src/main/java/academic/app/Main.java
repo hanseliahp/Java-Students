@@ -1,8 +1,8 @@
 package academic.app;
 
-import academic.dao.EnrollmentDAO;
+import academic.dao.*;
 import academic.db.DatabaseConnection;
-import academic.model.Enrollment;
+import academic.model.*;
 import java.sql.Connection;
 
 import java.sql.SQLException;
@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+        
 //                try (Connection conn =
 //                DatabaseConnection.getConnection()) {
 //
@@ -22,7 +23,8 @@ public class Main {
 //            System.out.println(e.getMessage());
 //        }
         
-        EnrollmentDAO dao = new EnrollmentDAO();
+        EnrollmentDAO edao = new EnrollmentDAO();
+        StudentDAO sdao = new StudentDAO();
 
         try (Scanner scanner = new Scanner(System.in)) {
             while (true) {
@@ -38,40 +40,64 @@ public class Main {
 
                 try {
                     switch (choice) {
+//                        case "1": {
+//                            int studentId = readInt(
+//                                scanner, "Student ID: "
+//                            );
+//
+//                            int courseId = readInt(
+//                                scanner, "Course ID: "
+//                            );
+//
+//                            System.out.print("Semester: ");
+//                            String semester = scanner.nextLine().trim();
+//
+//                            if (studentId <= 0 || courseId <= 0
+//                                    || semester.isEmpty()) {
+//                                System.out.println("Invalid enrollment data.");
+//                                break;
+//                            }
+//
+//                            Enrollment enrollment = new Enrollment(
+//                                studentId, courseId, semester
+//                            );
+//
+//                            int rows = edao.createEnrollment(enrollment);
+//
+//                            System.out.println(
+//                                rows == 1 ? "Enrollment created!"
+//                                          : "Enrollment not created."
+//                            );
+//
+//                            break;
+//                        }
                         case "1": {
-                            int studentId = readInt(
-                                scanner, "Student ID: "
-                            );
+                            System.out.print("NIM : ");
+                            String studentNumber = scanner.nextLine();
+                            
+                            System.out.print("Nama Lengkap : ");
+                            String studentName = scanner.nextLine();
 
-                            int courseId = readInt(
-                                scanner, "Course ID: "
-                            );
-
-                            System.out.print("Semester: ");
-                            String semester = scanner.nextLine().trim();
-
-                            if (studentId <= 0 || courseId <= 0
-                                    || semester.isEmpty()) {
-                                System.out.println("Invalid enrollment data.");
+                            if (studentName.isEmpty() || studentNumber.isEmpty()) {
+                                System.out.println("Invalid student data.");
                                 break;
                             }
 
-                            Enrollment enrollment = new Enrollment(
-                                studentId, courseId, semester
-                            );
+                            Student student = new Student(studentNumber, studentName);
 
-                            int rows = dao.createEnrollment(enrollment);
+                            int rows = sdao.createStudent(student);
 
                             System.out.println(
-                                rows == 1 ? "Enrollment created!"
-                                          : "Enrollment not created."
+                                rows == 1 ? "Student created!"
+                                          : "Student not created."
                             );
 
                             break;
                         }
 
                         case "2": {
-                            dao.showAllEnrollments();
+//                            edao.showAllEnrollments();
+                            sdao.showAllStudents();
                             break;
                         }
 
@@ -89,7 +115,7 @@ public class Main {
                                 break;
                             }
 
-                            int rows = dao.updateGrade(
+                            int rows = edao.updateGrade(
                                 enrollmentId, grade
                             );
 
@@ -106,7 +132,7 @@ public class Main {
                                 scanner, "Enrollment ID: "
                             );
 
-                            int rows = dao.deleteEnrollment(enrollmentId);
+                            int rows = edao.deleteEnrollment(enrollmentId);
 
                             System.out.println(
                                 rows > 0 ? "Enrollment deleted!"
