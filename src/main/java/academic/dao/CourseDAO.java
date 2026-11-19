@@ -15,12 +15,12 @@ public class CourseDAO {
     
     public int createCourse(Course course)
             throws SQLException{
-        String sql = "INSERT INTO courses (course_number, course_name, credits, lecturer_id) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO courses (course_code, course_name, credits, lecturer_id) VALUES (?, ?, ?, ?)";
     try (
         Connection conn = DatabaseConnection.getConnection();
         PreparedStatement stmt = conn.prepareStatement(sql);
     ) {
-        stmt.setString(1, course.getCourseNumber());
+        stmt.setString(1, course.getCourseCode());
         stmt.setString(2, course.getCourseName());
         stmt.setInt(3, course.getCredits());
         stmt.setInt(4, course.getLecturerId());
@@ -32,8 +32,8 @@ public class CourseDAO {
     public void showAllCourse(Course course)
             throws SQLException {
         String sql = 
-                "SELECT c.course_id, c.course_number, c.course_name, c.credits, "
-                + "l.full_name, AS lecturer_name FROM courses c JOIN lecturers ON "
+                "SELECT c.course_id, c.course_code, c.course_name, c.credits, "
+                + "l.full_name AS lecturer_name FROM courses c JOIN lecturers l ON "
                 + "c.lecturer = l.lecturer_id ORDER BY c.course_id";
     try (
             Connection conn = DatabaseConnection.getConnection();
@@ -47,7 +47,7 @@ public class CourseDAO {
                
                 System.out.println("-----------------------------");
                 System.out.println("Course ID       : " + rs.getInt("course_id"));
-                System.out.println("Course Number   : " + rs.getString("course_number"));
+                System.out.println("Course Number   : " + rs.getString("course_code"));
                 System.out.println("Course Name     : " + rs.getString("course_name"));
                 System.out.println("Credits         : " + rs.getInt("credits"));
                 System.out.println("Lecturer        : " + rs.getString("lecturer_name"));
