@@ -21,8 +21,8 @@ public class StudentDAO {
             throws SQLException {
 
         String sql = 
-                "INSERT INTO `students`(`student_number`, `full_name`) "
-                + "VALUES ('" + student.getStudentNumber() + "','" + student.getStudentName() + "')";
+                "INSERT INTO students(student_number, full_name) "
+                + "VALUES (?, ?)";
 
         try (
             Connection conn = DatabaseConnection.getConnection();
@@ -60,4 +60,37 @@ public class StudentDAO {
             }   
         }
     }
+    
+    public int updateStudent(Student student)
+            throws SQLException {
+
+        String sql = 
+                "UPDATE students SET student_number = ?, full_name = ? "
+                + "WHERE student_id = ?";
+
+        try (
+            Connection conn = DatabaseConnection.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)
+        ) {
+            stmt.setString(1, student.getStudentNumber());
+            stmt.setString(2, student.getStudentName());
+            stmt.setInt(3, student.getStudentId());
+
+            return stmt.executeUpdate();
+        }
+    }
+    
+    public int deleteStudent(int studentId) throws SQLException {
+        String sql =
+            "DELETE FROM students WHERE student_id = ?";
+
+        try (
+            Connection conn = DatabaseConnection.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)
+        ) {
+            stmt.setInt(1, studentId);
+
+            return stmt.executeUpdate();
+        }
+    }  
 }

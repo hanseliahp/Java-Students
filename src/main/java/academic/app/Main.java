@@ -40,7 +40,8 @@ public class Main {
 
                 try {
                     switch (choice) {
-//                        case "1": {
+                        
+                        case "1": {
 //                            int studentId = readInt(
 //                                scanner, "Student ID: "
 //                            );
@@ -69,9 +70,7 @@ public class Main {
 //                                          : "Enrollment not created."
 //                            );
 //
-//                            break;
-//                        }
-                        case "1": {
+//                            break;                        
                             System.out.print("NIM : ");
                             String studentNumber = scanner.nextLine();
                             
@@ -102,44 +101,78 @@ public class Main {
                         }
 
                         case "3": {
-                            int enrollmentId = readInt(
-                                scanner, "Enrollment ID: "
-                            );
-
-                            System.out.print("Grade (A-E): ");
-                            String grade = scanner.nextLine()
-                                    .trim().toUpperCase();
-
-                            if (!grade.matches("[A-E]")) {
-                                System.out.println("Invalid grade.");
+//                            int enrollmentId = readInt(
+//                                scanner, "Enrollment ID: "
+//                            );
+//
+//                            System.out.print("Grade (A-E): ");
+//                            String grade = scanner.nextLine()
+//                                    .trim().toUpperCase();
+//
+//                            if (!grade.matches("[A-E]")) {
+//                                System.out.println("Invalid grade.");
+//                                break;
+//                            }
+//
+//                            int rows = edao.updateGrade(
+//                                enrollmentId, grade
+//                            );
+//
+//                            System.out.println(
+//                                rows > 0 ? "Grade updated!"
+//                                         : "Enrollment not found or unchanged."
+//                            );
+//
+//                            break;
+                            int studentId = readInt(scanner, "Student ID: ");
+                            
+                            System.out.print("NIM : ");
+                            String studentNumber = scanner.nextLine();
+                            
+                            System.out.print("Nama Lengkap : ");
+                            String studentName = scanner.nextLine();
+                            
+                            if (studentName.isEmpty() || studentNumber.isEmpty()) {
+                                System.out.println("Invalid input.");
                                 break;
                             }
+                            
+                            Student student = new Student(studentId, studentNumber, studentName);
 
-                            int rows = edao.updateGrade(
-                                enrollmentId, grade
-                            );
+                            int rows = sdao.updateStudent(student);
 
                             System.out.println(
-                                rows > 0 ? "Grade updated!"
-                                         : "Enrollment not found or unchanged."
+                                rows > 0 ? "Student updated!"
+                                         : "Student not found or unchanged."
                             );
 
                             break;
                         }
 
                         case "4": {
-                            int enrollmentId = readInt(
-                                scanner, "Enrollment ID: "
-                            );
+//                            int enrollmentId = readInt(
+//                                scanner, "Enrollment ID: "
+//                            );
+//
+//                            int rows = edao.deleteEnrollment(enrollmentId);
+//
+//                            System.out.println(
+//                                rows > 0 ? "Enrollment deleted!"
+//                                         : "Enrollment not found."
+//                            );
+//
+//                            break;
+                            int studentId = readInt(scanner, "Student ID: ");
 
-                            int rows = edao.deleteEnrollment(enrollmentId);
+                            int rows = sdao.deleteStudent(studentId);
 
                             System.out.println(
-                                rows > 0 ? "Enrollment deleted!"
-                                         : "Enrollment not found."
+                                rows > 0 ? "Student deleted!"
+                                         : "student not found."
                             );
 
                             break;
+                            
                         }
 
                         case "0": {
