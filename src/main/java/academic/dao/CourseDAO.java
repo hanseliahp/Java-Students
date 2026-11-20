@@ -29,12 +29,12 @@ public class CourseDAO {
     }
     } 
     
-    public void showAllCourse(Course course)
+    public void showAllCourse()
             throws SQLException {
         String sql = 
                 "SELECT c.course_id, c.course_code, c.course_name, c.credits, "
                 + "l.full_name AS lecturer_name FROM courses c JOIN lecturers l ON "
-                + "c.lecturer = l.lecturer_id ORDER BY c.course_id";
+                + "c.lecturer_id = l.lecturer_id ORDER BY c.course_id";
     try (
             Connection conn = DatabaseConnection.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql);
