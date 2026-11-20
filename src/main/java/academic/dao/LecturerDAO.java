@@ -16,8 +16,8 @@ public class LecturerDAO {
     public int createLecturer(Lecturer lecturer)
         throws SQLException {
         
-        String sql = "INSERT INTO lecturers (lecturer_number, full_name, email) "
-                + "VALUES (?, ?, ?)";
+        String sql = "INSERT INTO lecturers (lecturer_number, full_name) "
+                + "VALUES (?, ?)";
                 
         try (
             Connection conn = DatabaseConnection.getConnection();
@@ -25,7 +25,6 @@ public class LecturerDAO {
         ) {
             stmt.setString(1, lecturer.getLecturerNumber());
             stmt.setString(2, lecturer.getFullName());
-            stmt.setString(3, lecturer.getEmail());
             
             return stmt.executeUpdate();
         }
@@ -33,7 +32,7 @@ public class LecturerDAO {
         
     public void showAllLecturers()
             throws SQLException{
-        String sql = "SELECT lecturer_id, lecturer_number, full_name, email "
+        String sql = "SELECT lecturer_id, lecturer_number, full_name "
                 + "FROM lecturers ORDER BY lecturer_id";
         try (
             Connection conn = DatabaseConnection.getConnection();
@@ -54,7 +53,6 @@ public class LecturerDAO {
                 System.out.println("Lecturer ID     : " + rs.getInt("lecturer_id"));
                 System.out.println("Lecturer Number : " + rs.getString("lecturer_number"));
                 System.out.println("Full Name       : " + rs.getString("full_name"));
-                System.out.println("Email           : " + email);
             }
             
             if(!found){
@@ -64,7 +62,7 @@ public class LecturerDAO {
     }
     public int updateLecturer(int lecturerId, String fullName, String email)
             throws SQLException {
-            String sql = "UPDATE lecturers SET full_name = ?, email = ? WHERE lecturer_id = ?";
+            String sql = "UPDATE lecturers SET full_name = ? WHERE lecturer_id = ?";
             try (
                 Connection conn = DatabaseConnection.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);

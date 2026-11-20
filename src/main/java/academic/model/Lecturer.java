@@ -12,19 +12,16 @@ public class Lecturer {
     private int lecturerId;
     private String lecturerNumber;
     private String fullName;
-    private String email;
     
-    public Lecturer(String lecturerNumber, String fullName, String email){
+    public Lecturer(String lecturerNumber, String fullName){
         this.lecturerNumber = lecturerNumber;
         this.fullName = fullName;
-        this.email = email;
     }
     
-    public Lecturer(int lecturerId, String lecturerNumber, String fullName, String email){
+    public Lecturer(int lecturerId, String lecturerNumber, String fullName){
         this.lecturerId = lecturerId;
         this.lecturerNumber = lecturerNumber;
         this.fullName = fullName;
-        this.email = email;
     }
 
     public int getLecturerId() {
@@ -39,8 +36,4 @@ public class Lecturer {
         return fullName;
     }
 
-    public String getEmail() {
-        return email;
-    }
-    
 }
