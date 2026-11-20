@@ -56,15 +56,16 @@ public class LecturerDAO {
             }
         }
     }
-    public int updateLecturer(int lecturerId, String fullName)
+    public int updateLecturer(int lecturerId, String lecturerCode, String fullName)
             throws SQLException {
-            String sql = "UPDATE lecturers SET full_name = ? WHERE lecturer_id = ?";
+            String sql = "UPDATE lecturers SET lecturer_code = ?, full_name = ? WHERE lecturer_id = ?";
             try (
                 Connection conn = DatabaseConnection.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);
             ) {
-                stmt.setString(1, fullName);
-                stmt.setInt(2, lecturerId);
+                stmt.setString(1, lecturerCode);
+                stmt.setString(2, fullName);
+                stmt.setInt(3, lecturerId);
 
                 return stmt.executeUpdate();
             }

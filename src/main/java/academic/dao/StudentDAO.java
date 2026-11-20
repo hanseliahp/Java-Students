@@ -61,7 +61,7 @@ public class StudentDAO {
         }
     }
     
-    public int updateStudent(Student student)
+    public int updateStudent(int studentId, String studentNumber, String studentName)
             throws SQLException {
 
         String sql = 
@@ -72,9 +72,9 @@ public class StudentDAO {
             Connection conn = DatabaseConnection.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)
         ) {
-            stmt.setString(1, student.getStudentNumber());
-            stmt.setString(2, student.getStudentName());
-            stmt.setInt(3, student.getStudentId());
+            stmt.setString(1, studentNumber);
+            stmt.setString(2, studentName);
+            stmt.setInt(3, studentId);
 
             return stmt.executeUpdate();
         }
