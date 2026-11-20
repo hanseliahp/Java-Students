@@ -10,17 +10,17 @@ package academic.model;
  */
 public class Lecturer {
     private int lecturerId;
-    private String lecturerNumber;
+    private String lecturerCode;
     private String fullName;
     
-    public Lecturer(String lecturerNumber, String fullName){
-        this.lecturerNumber = lecturerNumber;
+    public Lecturer(String lecturerCode, String fullName){
+        this.lecturerCode = lecturerCode;
         this.fullName = fullName;
     }
     
-    public Lecturer(int lecturerId, String lecturerNumber, String fullName){
+    public Lecturer(int lecturerId, String lecturerCode, String fullName){
         this.lecturerId = lecturerId;
-        this.lecturerNumber = lecturerNumber;
+        this.lecturerCode = lecturerCode;
         this.fullName = fullName;
     }
 
@@ -28,8 +28,8 @@ public class Lecturer {
         return lecturerId;
     }
 
-    public String getLecturerNumber() {
-        return lecturerNumber;
+    public String getLecturerCode() {
+        return lecturerCode;
     }
 
     public String getFullName() {

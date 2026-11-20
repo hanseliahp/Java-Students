@@ -12,21 +12,18 @@ public class Course {
     private int courseId;
     private String courseCode;
     private String courseName;
-    private int credits;
     private int lecturerId;
     
-    public Course(String courseCode, String courseName, int credits, int lecturerId){
+    public Course(String courseCode, String courseName, int lecturerId){
         this.courseCode= courseCode;
         this.courseName = courseName;
-        this.credits = credits;
         this.lecturerId = lecturerId;
     }
     
-    public Course(int courseId, String courseCode, String courseName, int credits, int lecturerId){
+    public Course(int courseId, String courseCode, String courseName, int lecturerId){
         this.courseId = courseId;
         this.courseCode = courseCode;
         this.courseName = courseName;
-        this.credits = credits;
         this.lecturerId = lecturerId;
     }
 
@@ -40,10 +37,6 @@ public class Course {
 
     public String getCourseName() {
         return courseName;
-    }
-
-    public int getCredits() {
-        return credits;
     }
 
     public int getLecturerId() {
